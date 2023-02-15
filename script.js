@@ -100,7 +100,6 @@ class App {
   _loadMap(position) {
     const { latitude } = position.coords;
     const { longitude } = position.coords;
-    console.log(`https://www.google.com/maps/@${latitude},${longitude}`);
 
     const coords = [latitude, longitude];
     this.#map = L.map('map').setView(coords, this.#mapZoomLevel);
@@ -111,7 +110,7 @@ class App {
     }).addTo(this.#map);
 
     this.#map.on('click', this._showForm.bind(this));
-    this.#workouts.forEach(work => {
+    this.#workouts.forEach((work) => {
       this._renderWorkoutMarker(work);
     });
   }
@@ -142,9 +141,9 @@ class App {
   _newWorkout(e) {
     //a helper function
     const validInputs = (...inputs) =>
-      inputs.every(inp => Number.isFinite(inp));
+      inputs.every((inp) => Number.isFinite(inp));
     //another heşper function,
-    const allPositive = (...inputs) => inputs.every(inp => inp > 0);
+    const allPositive = (...inputs) => inputs.every((inp) => inp > 0);
     e.preventDefault();
 
     //Get data from form
@@ -189,6 +188,10 @@ class App {
     //set local storage to all workouts
     this._setLocalStorage();
   }
+
+  _renderWorkoutCancel() {
+    console.log('canceled');
+  }
   _renderWorkoutMarker(workout) {
     L.marker(workout.coords)
       .addTo(this.#map)
@@ -208,11 +211,11 @@ class App {
   }
 
   _renderWorkout(workout) {
+    console.log(this);
     let html = `<li class="workout workout--${workout.type}" data-id="${
       workout.id
-    }">
-    <h2 class="workout__title">${workout.description}</h2>
-    <div class="workout__details">
+    }"><h2 class="workout__title">${workout.description}</h2>
+            <div class="workout__details">
       <span class="workout__icon">${
         workout.type === 'running' ? '🏃‍♂️' : '🚴‍♀️'
       }</span>
@@ -257,7 +260,7 @@ class App {
     if (!workoutEl) return;
 
     const workout = this.#workouts.find(
-      work => work.id === workoutEl.dataset.id
+      (work) => work.id === workoutEl.dataset.id
     );
     this.#map.setView(workout.coords, this.#mapZoomLevel, {
       animate: true,
@@ -271,7 +274,7 @@ class App {
     const data = JSON.parse(localStorage.getItem('workouts'));
     if (!data) return;
     this.#workouts = data;
-    this.#workouts.forEach(work => {
+    this.#workouts.forEach((work) => {
       this._renderWorkout(work);
     });
   }

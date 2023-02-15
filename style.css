@@ -52,7 +52,14 @@ a:visited {
 .logo {
   height: 5.2rem;
   align-self: center;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
+}
+
+.instructions {
+  font-size: 1.7rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-align: center;
 }
 
 .workouts {
@@ -87,7 +94,13 @@ a:visited {
 .workout__title {
   font-size: 1.7rem;
   font-weight: 600;
-  grid-column: 1 / -1;
+  grid-column: 1 / -2;
+}
+
+.workout__cancel {
+  font-size: 1.7rem;
+  font-weight: 600;
+  place-self: end;
 }
 
 .workout__details {
